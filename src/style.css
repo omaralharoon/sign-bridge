@@ -1,0 +1,583 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: #ffffff;
+  font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e293b;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+/* الهيكل العام - تثبيت القائمة الجانبية على اليمين في الوضع العربي والمحتوى في مكانه الطبيعي */
+.main-layout {
+  display: flex;
+  flex-direction: row-reverse; /* يضع القائمة على اليمين والمحتوى على اليسار */
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* القائمة الجانبية (Sidebar) */
+.sidebar {
+  width: 290px;
+  min-width: 290px;
+  background-color: #0b132b;
+  color: #ffffff;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar h3 {
+  color: #38bdf8;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.sidebar-sub {
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.sign-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* كروت دليل الإشارات متناسقة مع الاتجاه العربي */
+.sign-item {
+  background-color: #1a233a;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  border: 1px solid #23304d;
+}
+
+.sign-name {
+  color: #ffffff;
+  font-weight: 600;
+  text-align: right;
+}
+
+.sign-icon {
+  color: #38bdf8;
+  font-size: 0.88rem;
+}
+
+.sidebar-footer {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #1e293b;
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.sidebar-footer strong {
+  color: #38bdf8;
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 4px;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.8), 0 0 20px rgba(56, 189, 248, 0.5);
+}
+
+/* قسم المحتوى */
+.right-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+/* الهيدر العلوي المدمج والمرتب */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 50px;
+  background-color: #ffffff;
+  border-bottom: none !important;
+  height: 75px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* الجهة اليمنى في الهيدر (اسم المنصة وزرار الرئيسية) */
+.header > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.globe-icon {
+  color: #38bdf8;
+}
+
+/* الجهة اليسرى في الهيدر (زرار English وزرار الثيم) */
+.header > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-btn {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-btn:hover {
+  background: #f8fafc;
+}
+
+/* المنطقة الرئيسية */
+.content-area {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.view-section {
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* الرئيسية والكروت */
+.hero-card {
+  background-color: #0b132b;
+  border-radius: 14px;
+  padding: 28px;
+  text-align: center;
+  margin-bottom: 25px;
+  border: 1px solid #1e293b;
+  color: #ffffff;
+}
+
+.hero-card h2 {
+  color: #38bdf8;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.hero-card p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.feature-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.feature-card {
+  background-color: #0b132b;
+  border-radius: 12px;
+  padding: 22px;
+  cursor: pointer;
+  border: 1px solid #1e293b;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  color: #ffffff;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+}
+
+.feature-card h3 {
+  color: #38bdf8;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.feature-card p {
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* الكارت التفاعلي المدمج */
+.interactive-card {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 10px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.interactive-card h2 {
+  color: #0f172a;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.interactive-card .box-desc {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-top: -6px;
+}
+
+/* إطار الفيديو */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 270px;
+  background-color: #0b132b;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  margin: 0 auto;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0b132b;
+}
+
+/* الأزرار العامة */
+.action-btn {
+  width: 100%;
+  max-width: 480px;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.camera-btn, .mic-dark-btn {
+  background-color: #0b132b;
+  color: #ffffff;
+}
+
+.mic-dark-btn.listening, .camera-btn.active {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);
+}
+
+.sub-label {
+  color: #64748b;
+  font-size: 0.88rem;
+  margin-top: 4px;
+  margin-bottom: -4px;
+}
+
+.input-container {
+  width: 100%;
+  max-width: 480px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #0b132b;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+.input-container input:focus {
+  border-color: #0284c7;
+}
+
+.blue-search-btn {
+  background-color: #0b132b;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(11, 19, 43, 0.2);
+}
+
+.blue-search-btn.active-translate {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);
+}
+
+.result-box {
+  background-color: #f8fafc;
+  border: 2px solid #0b132b;
+  color: #0b132b;
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+}
+
+.large-sign-output {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.light-status {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #0284c7;
+  padding: 14px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 480px;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.quick-switch-btn {
+  background-color: transparent;
+  color: #0284c7;
+  border: 2px dashed #0284c7;
+  border-radius: 10px;
+  padding: 12px;
+  width: 100%;
+  max-width: 480px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.quick-switch-btn:hover {
+  background-color: #f0f9ff;
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column !important;
+  }
+  .sidebar {
+    width: 100% !important;
+    min-width: 100% !important;
+    min-height: auto !important;
+    display: flex !important;
+    order: 2;
+    border-top: 1px solid #1e293b;
+    padding: 20px 15px;
+  }
+  .right-content-wrapper {
+    order: 1;
+  }
+  .content-area {
+    padding: 20px 15px;
+  }
+  .feature-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================== */
+/* تصميم زرار الثيم المطور والمحايد */
+/* ========================================== */
+.theme-switch-btn {
+  background: #334155;
+  border: 1px solid #475569;
+  width: 56px;
+  height: 28px;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  transition: background 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.theme-switch-btn .theme-icon-container {
+  width: 22px;
+  height: 22px;
+  background: #e2e8f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  position: absolute;
+  left: 3px;
+}
+
+/* ========================================== */
+/* الوضع الليلي الأسود النقي ومدمج تماماً (Seamless Pure Black Mode) */
+/* ========================================== */
+body.dark-mode {
+  background-color: #000000 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .app-container {
+  background-color: #000000 !important;
+}
+
+body.dark-mode .sidebar {
+  background-color: #0b132b !important;
+  border-left: 1px solid #1a1a1a !important;
+}
+
+body.dark-mode .right-content-wrapper {
+  background-color: #000000 !important;
+}
+
+body.dark-mode .header {
+  background-color: #000000 !important;
+  border-bottom: none !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .brand-title {
+  color: #ffffff !important;
+}
+
+body.dark-mode .nav-btn {
+  background: #111111 !important;
+  color: #ffffff !important;
+  border-color: #222222 !important;
+}
+
+body.dark-mode .nav-btn:hover {
+  background: #222222 !important;
+}
+
+body.dark-mode .content-area {
+  background-color: #000000 !important;
+}
+
+body.dark-mode .interactive-card {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+body.dark-mode .interactive-card h2 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .interactive-card .box-desc {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode input[type="text"] {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #1a1a1a !important;
+}
+
+body.dark-mode .result-box {
+  background-color: #0b132b !important;
+  border-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .light-status {
+  background-color: #0b132b !important;
+  border-color: #1e293b !important;
+  color: #38bdf8 !important;
+}
+
+body.dark-mode .action-btn, 
+body.dark-mode .mic-dark-btn {
+  background-color: #0b132b !important;
+  border: 1px solid #1e293b !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8) !important;
+}
+
+body.dark-mode .action-btn:hover {
+  border-color: #38bdf8 !important;
+}
+
+body.dark-mode .theme-switch-btn {
+  background: #1a1a1a;
+  border-color: #333333;
+}
+
+body.dark-mode .theme-switch-btn .theme-icon-container {
+  transform: translateX(28px);
+  background: #38bdf8;
+}

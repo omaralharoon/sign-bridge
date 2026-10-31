@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جسر تواصل - Jisr Tawasul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./src/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <div class="main-layout" id="main-layout">
+      
+      <!-- القائمة الجانبية (Sidebar) -->
+      <aside class="sidebar">
+        <div>
+          <h3 data-ar="دليل الإشارات ✋" data-en="Sign Guide ✋">دليل الإشارات ✋</h3>
+          <p class="sidebar-sub" data-ar="الإشارات التي يتطلبها النموذج:" data-en="Required Model Signs:">الإشارات التي يتطلبها النموذج:</p>
+
+          <div class="sign-list">
+            <div class="sign-item">
+              <span class="sign-name" data-ar="مرحباً" data-en="Hello">مرحباً</span>
+              <span class="sign-icon" data-ar="كف مفتوح ✋" data-en="Open Palm ✋">كف مفتوح ✋</span>
+            </div>
+            <div class="sign-item">
+              <span class="sign-name" data-ar="توقف" data-en="Stop">توقف</span>
+              <span class="sign-icon" data-ar="قبضة مغلقة ✊" data-en="Closed Fist ✊">قبضة مغلقة ✊</span>
+            </div>
+            <div class="sign-item">
+              <span class="sign-name" data-ar="ممتاز" data-en="Excellent">ممتاز</span>
+              <span class="sign-icon" data-ar="إبهام لأعلى 👍" data-en="Thumbs Up 👍">إبهام لأعلى 👍</span>
+            </div>
+            <div class="sign-item">
+              <span class="sign-name" data-ar="أبداً" data-en="Never">أبداً</span>
+              <span class="sign-icon" data-ar="إبهام لأسفل 👎" data-en="Thumbs Down 👎">إبهام لأسفل 👎</span>
+            </div>
+            <div class="sign-item">
+              <span class="sign-name" data-ar="اثنان" data-en="Two">اثنان</span>
+              <span class="sign-icon" data-ar="اثنان ✌️" data-en="Two ✌️">اثنان ✌️</span>
+            </div>
+            <div class="sign-item">
+              <span class="sign-name" data-ar="إصبع مرفوع" data-en="Raised Finger">إصبع مرفوع</span>
+              <span class="sign-icon" data-ar="واحد ☝️" data-en="One ☝️">واحد ☝️</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <p data-ar="تطوير وتصميم:" data-en="Developed & Designed by:">تطوير وتصميم:</p>
+          <strong data-ar="عمر الحارون و كريم الحارون" data-en="Omar El-Haroon & Kareem El-Haroon">عمر الحارون و كريم الحارون</strong>
+        </div>
+      </aside>
+
+      <!-- محتوى الصفحات -->
+      <div class="right-content-wrapper">
+        
+        <header class="header">
+          <div class="brand-title">
+            <span class="globe-icon">🌐</span>
+            <span id="brand-text">جسر تواصل</span>
+          </div>
+          <div class="header-actions">
+            <!-- زرار الثيم الليلي والنهاري -->
+            <button id="theme-toggle-btn" class="theme-switch-btn" title="تغيير الوضع">
+              <div class="theme-icon-container">
+                <span class="sun-moon-icon">☀️</span>
+              </div>
+            </button>
+            <button id="lang-toggle-btn" class="nav-btn lang-btn">🌐 English</button>
+            <button id="nav-home-btn" class="nav-btn" data-ar="🏠 الرئيسية" data-en="🏠 Home">🏠 الرئيسية</button>
+          </div>
+        </header>
+
+        <main class="content-area">
+          
+          <!-- الرئيسية -->
+          <div id="home-view" class="view-section">
+            <div class="hero-card">
+              <h2 data-ar="منصة جسر تواصل الذكية 🤝" data-en="Sign Bridge smart platform 🤝">منصة جسر تواصل الذكية 🤝</h2>
+              <p data-ar="منصة متكاملة لترجمة لغة الإشارة ثنائية الاتجاه باستخدام خوارزميات رؤية الكمبيوتر والتعرف الصوتي." data-en="A comprehensive platform for two-way sign language translation using computer vision and speech recognition.">منصة متكاملة لترجمة لغة الإشارة ثنائية الاتجاه باستخدام خوارزميات رؤية الكمبيوتر والتعرف الصوتي.</p>
+            </div>
+
+            <div class="feature-cards-grid">
+              <div id="card-to-camera" class="feature-card">
+                <h3 data-ar="🖐️ ترجمة الإشارات المباشرة" data-en="🖐️ Live Sign Translation">🖐️ ترجمة الإشارات المباشرة</h3>
+                <p data-ar="افتح الكاميرا وابدأ بالترجمة الفورية للحركات." data-en="Open camera and start real-time translation for gestures.">افتح الكاميرا وابدأ بالترجمة الفورية للحركات.</p>
+              </div>
+              <div id="card-to-audio" class="feature-card">
+                <h3 data-ar="🎤 الصوت أو النص إلى إشارات" data-en="🎤 Voice/Text to Signs">🎤 الصوت أو النص إلى إشارات</h3>
+                <p data-ar="تحدث بالميكروفون أو اكتب النص لترجمته فوراً." data-en="Speak via microphone or type text for instant translation.">تحدث بالميكروفون أو اكتب النص لترجمته فوراً.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- صفحة الكاميرا -->
+          <div id="camera-view" class="view-section hidden">
+            <div class="interactive-card">
+              <h2 data-ar="ترجمة الإشارات المباشرة" data-en="Live Sign Translation">ترجمة الإشارات المباشرة</h2>
+              <p class="box-desc" data-ar="قم بعمل الإشارة بوضوح أمام كاميرا الجهاز" data-en="Perform the gesture clearly in front of device camera">قم بعمل الإشارة بوضوح أمام كاميرا الجهاز</p>
+
+              <div class="video-wrapper">
+                <video id="webcam" autoplay playsinline muted></video>
+                <div id="video-overlay" class="video-overlay"></div>
+              </div>
+
+              <button id="start-camera-btn" class="action-btn camera-btn">
+                <span id="cam-btn-icon">📷</span> <span id="cam-btn-text" data-ar="انقر هنا لتشغيل الكاميرا" data-en="Click here to start camera">انقر هنا لتشغيل الكاميرا</span>
+              </button>
+
+              <div class="status-box light-status">
+                <span id="model-status" data-ar="✅ النموذج جاهز!" data-en="✅ Model Ready!">✅ النموذج جاهز!</span>
+              </div>
+
+              <button id="go-to-audio-btn" class="quick-switch-btn" data-ar="🔄 الانتقال إلى: تحويل الصوت أو النص إلى إشارات" data-en="🔄 Switch to: Voice or Text to Signs Translation">
+                🔄 الانتقال إلى: تحويل الصوت أو النص إلى إشارات
+              </button>
+            </div>
+          </div>
+
+          <!-- صفحة الصوت والتكست -->
+          <div id="audio-view" class="view-section hidden">
+            <div class="interactive-card">
+              <h2 data-ar="تحويل الصوت أو النص إلى إشارات" data-en="Voice or Text to Signs">تحويل الصوت أو النص إلى إشارات</h2>
+              <p class="box-desc" data-ar="تحدث بالميكروفون أو اكتب الكلمة لعرض الإشارة المقابلة" data-en="Speak or type a word to view the corresponding sign gesture">تحدث بالميكروفون أو اكتب الكلمة لعرض الإشارة المقابلة</p>
+              
+              <button id="mic-listen-btn" class="action-btn mic-dark-btn">
+                <span id="mic-btn-text" data-ar="اضغط هنا للتحدث الآن" data-en="Click here to speak now">اضغط هنا للتحدث الآن</span> 🎙️
+              </button>
+
+              <p class="sub-label" data-ar="أو أدخل النص يدوياً:" data-en="Or enter text manually:">أو أدخل النص يدوياً:</p>
+
+              <div class="input-container">
+                <input type="text" id="text-prompt" placeholder="اكتب كلمتك هنا..." data-placeholder-ar="اكتب كلمتك هنا..." data-placeholder-en="Type your word here..." />
+              </div>
+
+              <button id="translate-text-btn" class="action-btn blue-search-btn">
+                <span data-ar="ترجمة إلى إشارة" data-en="Translate to Sign">ترجمة إلى إشارة</span> 🔍
+              </button>
+
+              <div class="status-box result-box">
+                <span id="audio-status" class="large-sign-output">👋</span>
+              </div>
+
+              <button id="go-to-camera-btn" class="quick-switch-btn" data-ar="🔄 الانتقال إلى: ترجمة الإشارات المباشرة (الكاميرا)" data-en="🔄 Switch to: Live Camera Translation">
+                🔄 الانتقال إلى: ترجمة الإشارات المباشرة (الكاميرا)
+              </button>
+            </div>
+          </div>
+
+        </main>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>
