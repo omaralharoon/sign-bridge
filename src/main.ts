@@ -36,27 +36,31 @@ const micListenBtn = document.getElementById('mic-listen-btn') as HTMLButtonElem
 const micBtnText = document.getElementById('mic-btn-text')!;
 const audioStatus = document.getElementById('audio-status')!;
 const textPrompt = document.getElementById('text-prompt') as HTMLInputElement;
-const translateTextBtn = document.getElementById('translate-text-btn')!;
+const translateTextBtn = document.getElementById('translate-text-btn') as HTMLButtonElement;
 
 let isCameraStarted = false;
 let activeCameraInstance: any = null;
 let activeHandsInstance: any = null;
 
-let currentLang: 'ar' | 'en' = 'ar';
+let currentLang: 'ar' | 'en' = (localStorage.getItem('preferred_lang') as 'ar' | 'en') || 'ar';
 const langBtn = document.getElementById('lang-toggle-btn');
 const brandText = document.getElementById('brand-text');
 const themeToggleBtn = document.getElementById('theme-toggle-btn');
 
-themeToggleBtn?.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  const iconContainer = themeToggleBtn.querySelector('.theme-icon-container')!;
-  const isDark = document.body.classList.contains('dark-mode');
-  iconContainer.textContent = isDark ? '🌙' : '☀️';
-});
+// استرجاع الثيم المحفوظ مسبقاً عند تحميل الصفحة
+const savedTheme = localStorage.getItem('preferred_theme');
+if (savedTheme === 'dark') {
+  document.body.classList.add('dark-mode');
+  themeToggleBtn?.classList.add('dark');
+  themeToggleBtn?.classList.remove('light');
+} else {
+  document.body.classList.remove('dark-mode');
+  themeToggleBtn?.classList.remove('dark');
+  themeToggleBtn?.classList.add('light');
+}
 
-langBtn?.addEventListener('click', () => {
-  currentLang = currentLang === 'ar' ? 'en' : 'ar';
-  
+// استرجاع وتطبيق اللغة المحفوظة مسبقاً عند تحميل الصفحة
+function applySavedLanguage() {
   document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
   document.documentElement.lang = currentLang;
 
@@ -82,6 +86,32 @@ langBtn?.addEventListener('click', () => {
   if (modelStatus.textContent === 'None' || modelStatus.textContent === 'غير معرف') {
     modelStatus.textContent = currentLang === 'ar' ? 'غير معرف' : 'None';
   }
+
+  // تحديث نص زر التحدث بناءً على اللغة المحفوظة
+  if (micBtnText) {
+    micBtnText.innerHTML = currentLang === 'ar' ? '🎙️اضغط هنا للتحدث الآن🎙️' : '🎙️Click here to speak now🎙️';
+  }
+}
+
+applySavedLanguage();
+
+themeToggleBtn?.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  themeToggleBtn.classList.toggle('dark', isDark);
+  themeToggleBtn.classList.toggle('light', !isDark);
+  
+  // حفظ اختيار الثيم في ذاكرة المتصفح
+  localStorage.setItem('preferred_theme', isDark ? 'dark' : 'light');
+});
+
+langBtn?.addEventListener('click', () => {
+  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+  
+  // حفظ اختيار اللغة في ذاكرة المتصفح
+  localStorage.setItem('preferred_lang', currentLang);
+
+  applySavedLanguage();
 });
 
 const signDictionary: { [key: string]: string } = {
@@ -189,7 +219,7 @@ startCameraBtn.addEventListener('click', async () => {
 
   try {
     startCameraBtn.classList.add('active');
-    startCameraBtn.style.backgroundColor = '#0084c7';
+    startCameraBtn.style.backgroundColor = '#009a96';
     camBtnIcon.textContent = '📷';
     camBtnText.textContent = currentLang === 'ar' ? 'الكاميرا تعمل الآن...' : 'Camera is running...';
     videoOverlay.style.display = 'none';
@@ -219,7 +249,7 @@ startCameraBtn.addEventListener('click', async () => {
 
       if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
         for (const landmarks of results.multiHandLandmarks) {
-          drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, { color: '#0284c7', lineWidth: 4 });
+          drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, { color: '#009a96', lineWidth: 4 });
           drawLandmarks(canvasCtx, landmarks, { color: '#0f172a', lineWidth: 2, radius: 6 });
         }
 
@@ -274,7 +304,7 @@ function processTextToSign(inputString: string) {
   if (foundSymbol !== 'None') {
     audioStatus.innerHTML = `<span style="font-size: 90px; display: inline-block; text-align: center; width: 100%;">${foundSymbol}</span>`;
   } else {
-    audioStatus.innerHTML = `<span style="font-size: 24px; font-weight: bold; color: #0084c7;">${currentLang === 'ar' ? 'غير معرف' : 'None'}</span>`;
+    audioStatus.innerHTML = `<span style="font-size: 24px; font-weight: bold; color: #009a96;">${currentLang === 'ar' ? 'غير معرف' : 'None'}</span>`;
   }
 }
 
@@ -313,8 +343,7 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
   recognition.onstart = () => {
     isListening = true;
     micListenBtn.classList.add('listening');
-    micBtnText.innerHTML = currentLang === 'ar' ? '🎙️ جاري الاستماع... تحدث الآن' : '🎙️ Listening... Speak now';
-    micListenBtn.style.backgroundColor = '#0084c7';
+    micBtnText.innerHTML = currentLang === 'ar' ? '🎙️جاري الاستماع... تحدث الآن🎙️' : '🎙️Listening... Speak now🎙️';
   };
 
   recognition.onresult = (event: any) => {
@@ -334,8 +363,7 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
   function resetMicButton() {
     isListening = false;
     micListenBtn.classList.remove('listening');
-    micBtnText.innerHTML = currentLang === 'ar' ? '🎙️ اضغط هنا للتحدث الآن' : '🎙️ Click here to speak now';
-    micListenBtn.style.backgroundColor = '';
+    micBtnText.innerHTML = currentLang === 'ar' ? '🎙️اضغط هنا للتحدث الآن🎙️' : '🎙️Click here to speak now🎙️';
   }
 } else {
   micListenBtn.addEventListener('click', () => {

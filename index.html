@@ -69,12 +69,16 @@
             <span id="brand-text">جسر تواصل</span>
           </div>
           <div class="header-actions">
-            <!-- زرار الثيم الليلي والنهاري -->
-            <button id="theme-toggle-btn" class="theme-switch-btn" title="تغيير الوضع">
-              <div class="theme-icon-container">
-                <span class="sun-moon-icon">☀️</span>
+            <!-- زرار الثيم المطور (شمس/قمر) -->
+            <button id="theme-toggle-btn" class="theme-toggle-btn light" title="تغيير الوضع">
+              <div class="icon-container">
+                <span class="sun-circle"></span>
+                <span class="cloud cloud-1"></span>
+                <span class="star star-1">✦</span>
+                <span class="star star-2">✦</span>
               </div>
             </button>
+
             <button id="lang-toggle-btn" class="nav-btn lang-btn">🌐 English</button>
             <button id="nav-home-btn" class="nav-btn" data-ar="🏠 الرئيسية" data-en="🏠 Home">🏠 الرئيسية</button>
           </div>
@@ -132,17 +136,16 @@
               <h2 data-ar="تحويل الصوت أو النص إلى إشارات" data-en="Voice or Text to Signs">تحويل الصوت أو النص إلى إشارات</h2>
               <p class="box-desc" data-ar="تحدث بالميكروفون أو اكتب الكلمة لعرض الإشارة المقابلة" data-en="Speak or type a word to view the corresponding sign gesture">تحدث بالميكروفون أو اكتب الكلمة لعرض الإشارة المقابلة</p>
               
+              <!-- زرار التحدث بالشكل المطلوب بالحرف -->
               <button id="mic-listen-btn" class="action-btn mic-dark-btn">
-                <span id="mic-btn-text" data-ar="اضغط هنا للتحدث الآن" data-en="Click here to speak now">اضغط هنا للتحدث الآن</span> 🎙️
+                <span id="mic-btn-text" data-ar="🎙️اضغط هنا للتحدث الآن🎙️" data-en="🎙️Click here to speak now🎙️">🎙️اضغط هنا للتحدث الآن🎙️</span>
               </button>
-
-              <p class="sub-label" data-ar="أو أدخل النص يدوياً:" data-en="Or enter text manually:">أو أدخل النص يدوياً:</p>
 
               <div class="input-container">
                 <input type="text" id="text-prompt" placeholder="اكتب كلمتك هنا..." data-placeholder-ar="اكتب كلمتك هنا..." data-placeholder-en="Type your word here..." />
               </div>
 
-              <button id="translate-text-btn" class="action-btn blue-search-btn">
+              <button id="translate-text-btn" class="action-btn translate-action-btn">
                 <span data-ar="ترجمة إلى إشارة" data-en="Translate to Sign">ترجمة إلى إشارة</span> 🔍
               </button>
 
