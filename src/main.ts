@@ -106,41 +106,29 @@ langBtn?.addEventListener('click', () => {
   applySavedLanguage();
 });
 
-// القاموس النظيف بدون تكرارات ومع المرادفات الدقيقة باللغتين
 const signDictionary: { [key: string]: string } = {
-  // كف مفتوح (مرحباً / Hello)
   'مرحباً': '✋',
   'أهلاً': '✋',
   'مرحبا': '✋',
   'hello': '✋',
   'open palm': '✋',
-
-  // قبضه مغلقة (توقف / Stop)
   'توقف': '✊',
   'قف': '✊',
   'stop': '✊',
   'closed fist': '✊',
-
-  // إبهام لأعلى (ممتاز / Excellent)
   'ممتاز': '👍',
   'أحسنت': '👍',
   'عظيم': '👍',
   'excellent': '👍',
   'thumbs up': '👍',
-
-  // إبهام لأسفل (أبداً / Never)
   'أبداً': '👎',
   'مستحيل': '👎',
   'never': '👎',
   'thumbs down': '👎',
-
-  // اثنان / Two (تم إزالة تكرارات النصر والاعتماد على اثنان/Two)
   'اثنان': '✌️',
   'two': '✌️',
   '2': '✌️',
   'victory sign': '✌️',
-
-  // واحد / One
   'واحد': '☝️',
   'one': '☝️',
   '1': '☝️',
@@ -222,6 +210,9 @@ startCameraBtn.addEventListener('click', async () => {
     }
     webcam.srcObject = null;
 
+    // مسح الرسم على الكانفاس فور إيقاف الكاميرا
+    canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+
     startCameraBtn.classList.remove('active');
     startCameraBtn.style.backgroundColor = ''; 
     camBtnIcon.textContent = '📷';
@@ -296,6 +287,7 @@ startCameraBtn.addEventListener('click', async () => {
     camBtnIcon.textContent = '📷';
     camBtnText.textContent = currentLang === 'ar' ? 'انقر هنا لتشغيل الكاميرا' : 'Click here to start camera';
     videoOverlay.style.display = 'flex';
+    canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
   }
 });
 
