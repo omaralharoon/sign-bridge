@@ -19,6 +19,8 @@ body, html {
   display: flex;
   flex-direction: column;
   background-color: #f8f6f0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .main-layout {
@@ -110,20 +112,22 @@ body, html {
   flex-direction: column;
   background-color: #f8f6f0;
   transition: background-color 0.3s ease;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 50px;
+  padding: 18px 30px;
   background-color: #f8f6f0;
   height: 75px;
   transition: background-color 0.3s ease;
 }
 
 .brand-title {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: #0f172a;
   display: flex;
@@ -138,17 +142,17 @@ body, html {
 .header > div:last-child {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 }
 
 .nav-btn {
   background: #ffffff;
   color: #0f172a;
   border: 1px solid #cbd5e1;
-  padding: 8px 18px;
+  padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -161,10 +165,11 @@ body, html {
 
 .content-area {
   flex: 1;
-  padding: 40px;
+  padding: 30px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .view-section {
@@ -180,7 +185,7 @@ body, html {
 .hero-card {
   background-color: #f8f6f0;
   border-radius: 14px;
-  padding: 28px;
+  padding: 24px;
   text-align: center;
   margin-bottom: 25px;
   border: 1px solid #e2ded4;
@@ -189,26 +194,26 @@ body, html {
 
 .hero-card h2 {
   color: #009a96;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   margin-bottom: 12px;
 }
 
 .hero-card p {
   color: #334155;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.6;
 }
 
 .feature-cards-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 15px;
 }
 
 .feature-card {
   background-color: #ffffff;
   border-radius: 12px;
-  padding: 22px;
+  padding: 18px;
   cursor: pointer;
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
@@ -223,13 +228,13 @@ body, html {
 
 .feature-card h3 {
   color: #009a96;
-  font-size: 1.05rem;
+  font-size: 1rem;
   margin-bottom: 8px;
 }
 
 .feature-card p {
   color: #64748b;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .interactive-card {
@@ -238,17 +243,18 @@ body, html {
   align-items: center;
   gap: 14px;
   text-align: center;
+  width: 100%;
 }
 
 .interactive-card h2 {
   color: #0f172a;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
 }
 
 .interactive-card .box-desc {
   color: #64748b;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .video-wrapper {
@@ -318,7 +324,6 @@ body, html {
   transition: all 0.3s ease;
 }
 
-/* تفعيل اللون الموحد في الحالتين (النهاري والليلي) وقت التفاعل */
 .mic-dark-btn.listening,
 .translate-action-btn.active-translate {
   background-color: #009a96 !important;
@@ -371,7 +376,7 @@ body, html {
   width: 100%;
   max-width: 480px;
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .quick-switch-btn {
@@ -382,17 +387,15 @@ body, html {
   padding: 12px;
   width: 100%;
   max-width: 480px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
 }
 
-/* ========================================== */
-/* تصميم زرار الثيم المطور التفاعلي (شمس وقمر) */
-/* ========================================== */
+/* زرار الثيم */
 .theme-toggle-btn {
-  width: 65px;
-  height: 32px;
+  width: 60px;
+  height: 30px;
   border-radius: 50px;
   border: 2px solid #cbd5e1;
   cursor: pointer;
@@ -421,8 +424,8 @@ body, html {
 }
 
 .sun-circle {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   background-color: #fbc02d;
   border-radius: 50%;
   position: absolute;
@@ -433,7 +436,7 @@ body, html {
 }
 
 .theme-toggle-btn.dark .sun-circle {
-  transform: translateX(33px);
+  transform: translateX(30px);
   background-color: #d1d5db;
   box-shadow: inset -3px -2px 0 0 #9ca3af;
 }
@@ -444,8 +447,8 @@ body, html {
   border-radius: 10px;
   right: 6px;
   bottom: 4px;
-  width: 16px;
-  height: 7px;
+  width: 14px;
+  height: 6px;
   opacity: 0.8;
   transition: opacity 0.3s ease;
 }
@@ -457,54 +460,91 @@ body, html {
 .star {
   position: absolute;
   color: #fff;
-  font-size: 7px;
+  font-size: 6px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.star-1 { left: 8px; top: 6px; }
-.star-2 { left: 16px; top: 15px; }
+.star-1 { left: 8px; top: 5px; }
+.star-2 { left: 14px; top: 13px; }
 
 .theme-toggle-btn.dark .star {
   opacity: 1;
 }
 
 /* ========================================== */
-/* الوضع الليلي (أسود صافي `#000000`) */
+/* Media Queries للتجاوب الفعلي مع الموبايل وترتيب العناصر */
 /* ========================================== */
+@media (max-width: 900px) {
+  .main-layout {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  
+  .right-content-wrapper {
+    order: 1 !important;
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  .sidebar {
+    order: 2 !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    min-height: auto !important;
+    height: auto !important;
+    border-left: none !important;
+    border-top: 1px solid #e2ded4;
+    padding: 15px;
+    position: relative !important;
+  }
+
+  .header {
+    padding: 10px 15px;
+    height: 65px;
+    width: 100% !important;
+  }
+
+  .brand-title {
+    font-size: 1.2rem;
+  }
+
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .content-area {
+    padding: 15px 10px;
+    width: 100% !important;
+  }
+
+  .view-section {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .feature-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* الوضع الليلي */
 body.dark-mode {
   background-color: #000000 !important;
   color: #ffffff !important;
 }
 
-body.dark-mode .app-container {
-  background-color: #000000 !important;
-}
-
-body.dark-mode .right-content-wrapper {
-  background-color: #000000 !important;
-}
-
-body.dark-mode .header {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-}
-
-body.dark-mode .content-area {
-  background-color: #000000 !important;
-}
-
+body.dark-mode .app-container,
+body.dark-mode .right-content-wrapper,
+body.dark-mode .header,
+body.dark-mode .content-area,
 body.dark-mode .sidebar {
   background-color: #000000 !important;
   color: #ffffff !important;
-  border-left: 1px solid #222222 !important;
 }
 
-body.dark-mode .sidebar h3 {
-  color: #009a96 !important;
-}
-
-body.dark-mode .sidebar-sub {
-  color: #94a3b8 !important;
+body.dark-mode .sidebar {
+  border-color: #222222 !important;
 }
 
 body.dark-mode .sign-item {
@@ -516,68 +556,23 @@ body.dark-mode .sign-name {
   color: #ffffff !important;
 }
 
-body.dark-mode .sign-icon {
-  color: #009a96 !important;
-}
-
-body.dark-mode .sidebar-footer {
-  border-top-color: #222222 !important;
-  color: #94a3b8 !important;
-}
-
-body.dark-mode .sidebar-footer strong {
-  color: #009a96 !important;
-}
-
-body.dark-mode .brand-title {
-  color: #ffffff !important;
-}
-
 body.dark-mode .nav-btn {
   background: #121212 !important;
   color: #ffffff !important;
   border-color: #27272a !important;
 }
 
-body.dark-mode .nav-btn:hover {
-  background: #27272a !important;
-}
-
-body.dark-mode .interactive-card h2 {
-  color: #ffffff !important;
-}
-
 body.dark-mode .hero-card {
   background-color: #000000 !important;
+  border-color: #27272a !important;
   color: #ffffff !important;
-  border: 1px solid #27272a !important;
-}
-
-body.dark-mode .hero-card h2 {
-  color: #009a96 !important;
-}
-
-body.dark-mode .hero-card p {
-  color: #cbd5e1 !important;
 }
 
 body.dark-mode .feature-card {
   background-color: #121212 !important;
-  color: #ffffff !important;
   border-color: #27272a !important;
+  color: #ffffff !important;
   box-shadow: none !important;
-}
-
-body.dark-mode .feature-card h3 {
-  color: #009a96 !important;
-}
-
-body.dark-mode .feature-card p {
-  color: #cbd5e1 !important;
-}
-
-body.dark-mode .interactive-card .box-desc {
-  color: #94a3b8 !important;
 }
 
 body.dark-mode .video-wrapper {
@@ -585,37 +580,22 @@ body.dark-mode .video-wrapper {
   border-color: #27272a !important;
 }
 
-body.dark-mode .video-overlay {
+body.dark-mode .camera-btn,
+body.dark-mode .light-status,
+body.dark-mode .mic-dark-btn,
+body.dark-mode .translate-action-btn,
+body.dark-mode .result-box,
+body.dark-mode .quick-switch-btn {
   background-color: #121212 !important;
+  border-color: #27272a !important;
   color: #ffffff !important;
 }
 
-body.dark-mode .camera-btn {
-  background-color: #121212 !important;
-  color: #ffffff !important;
-  border: 1px solid #27272a !important;
-}
-
-body.dark-mode .light-status {
-  background-color: #121212 !important;
-  border: 1px solid #27272a !important;
+body.dark-mode .light-status,
+body.dark-mode .quick-switch-btn {
   color: #009a96 !important;
 }
 
-/* الأزرار في الوضع الليلي تأخذ الخلفية السوداء الكاتمة في العادي */
-body.dark-mode .mic-dark-btn {
-  background-color: #121212 !important;
-  color: #ffffff !important;
-  border: 1.5px solid #009a96 !important;
-}
-
-body.dark-mode .translate-action-btn {
-  background-color: #121212 !important;
-  color: #ffffff !important;
-  border: 1.5px solid #009a96 !important;
-}
-
-/* عند الضغط أو الاستماع في الوضع الليلي، تتحول لنفس لون التيركواز المضيء والواضح */
 body.dark-mode .mic-dark-btn.listening,
 body.dark-mode .translate-action-btn.active-translate {
   background-color: #009a96 !important;
@@ -626,21 +606,5 @@ body.dark-mode .translate-action-btn.active-translate {
 body.dark-mode .input-container input {
   background-color: #121212 !important;
   color: #ffffff !important;
-  border: 2px solid #27272a !important;
-}
-
-body.dark-mode .input-container input::placeholder {
-  color: #64748b !important;
-}
-
-body.dark-mode .result-box {
-  background-color: #121212 !important;
-  border: 2px solid #27272a !important;
-  color: #ffffff !important;
-}
-
-body.dark-mode .quick-switch-btn {
-  background-color: #121212 !important;
-  color: #009a96 !important;
-  border: 2.5px dashed #009a96 !important;
+  border-color: #27272a !important;
 }

@@ -47,7 +47,6 @@ const langBtn = document.getElementById('lang-toggle-btn');
 const brandText = document.getElementById('brand-text');
 const themeToggleBtn = document.getElementById('theme-toggle-btn');
 
-// استرجاع الثيم المحفوظ مسبقاً عند تحميل الصفحة
 const savedTheme = localStorage.getItem('preferred_theme');
 if (savedTheme === 'dark') {
   document.body.classList.add('dark-mode');
@@ -59,7 +58,6 @@ if (savedTheme === 'dark') {
   themeToggleBtn?.classList.add('light');
 }
 
-// استرجاع وتطبيق اللغة المحفوظة مسبقاً عند تحميل الصفحة
 function applySavedLanguage() {
   document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
   document.documentElement.lang = currentLang;
@@ -87,7 +85,6 @@ function applySavedLanguage() {
     modelStatus.textContent = currentLang === 'ar' ? 'غير معرف' : 'None';
   }
 
-  // تحديث نص زر التحدث بناءً على اللغة المحفوظة
   if (micBtnText) {
     micBtnText.innerHTML = currentLang === 'ar' ? '🎙️اضغط هنا للتحدث الآن🎙️' : '🎙️Click here to speak now🎙️';
   }
@@ -100,17 +97,12 @@ themeToggleBtn?.addEventListener('click', () => {
   const isDark = document.body.classList.contains('dark-mode');
   themeToggleBtn.classList.toggle('dark', isDark);
   themeToggleBtn.classList.toggle('light', !isDark);
-  
-  // حفظ اختيار الثيم في ذاكرة المتصفح
   localStorage.setItem('preferred_theme', isDark ? 'dark' : 'light');
 });
 
 langBtn?.addEventListener('click', () => {
   currentLang = currentLang === 'ar' ? 'en' : 'ar';
-  
-  // حفظ اختيار اللغة في ذاكرة المتصفح
   localStorage.setItem('preferred_lang', currentLang);
-
   applySavedLanguage();
 });
 
@@ -124,13 +116,18 @@ const signDictionary: { [key: string]: string } = {
   'أبداً': '👎',
   'ابدا': '👎',
   'اثنان': '✌️',
+  'علامة النصر': '✌️',
+  'النصر': '✌️',
   'واحد': '☝️',
   'hello': '✋',
   'stop': '✊',
   'excellent': '👍',
   'never': '👎',
   'two': '✌️',
-  'one': '☝️'
+  '2': '✌️',
+  'victory sign': '✌️',
+  'one': '☝️',
+  '1': '☝️'
 };
 
 function showView(viewToShow: HTMLElement) {
@@ -184,6 +181,7 @@ function recognizeGesture(landmarks: any[]): string {
     return currentLang === 'ar' ? 'مرحباً ✋' : 'Hello ✋';
   }
   
+  // الكاميرا ترجع "اثنان ✌️" بالوضع العربي و "Two ✌️" بالوضع الإنجليزي
   if (isIndexUp && isMiddleUp && !isRingUp && !isPinkyUp && landmarks[16].y > landmarks[14].y && landmarks[20].y > landmarks[18].y) {
     return currentLang === 'ar' ? 'اثنان ✌️' : 'Two ✌️';
   }
