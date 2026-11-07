@@ -76,16 +76,17 @@ body, html {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.sign-name {
-  color: #0f172a;
-  font-weight: 600;
+/* تنسيق الكلمات والألوان الجديدة */
+.swapped-green {
+  color: #009a96 !important;
+  text-decoration: underline !important;
+  font-weight: 700 !important;
   text-align: right;
 }
 
-.sign-icon {
-  color: #009a96;
-  font-size: 0.98rem;
-  font-weight: 600;
+.swapped-black {
+  color: #0f172a !important;
+  font-weight: 600 !important;
 }
 
 .sidebar-footer {
@@ -472,7 +473,7 @@ body, html {
 }
 
 /* ========================================== */
-/* Media Queries للتجاوب الفعلي مع الموبايل وترتيب العناصر */
+/* Media Queries للتجاوب الفعلي مع الموبايل */
 /* ========================================== */
 @media (max-width: 900px) {
   .main-layout {
@@ -552,7 +553,7 @@ body.dark-mode .sign-item {
   border-color: #27272a !important;
 }
 
-body.dark-mode .sign-name {
+body.dark-mode .swapped-black {
   color: #ffffff !important;
 }
 

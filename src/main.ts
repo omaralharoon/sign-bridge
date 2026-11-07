@@ -106,28 +106,45 @@ langBtn?.addEventListener('click', () => {
   applySavedLanguage();
 });
 
+// القاموس النظيف بدون تكرارات ومع المرادفات الدقيقة باللغتين
 const signDictionary: { [key: string]: string } = {
-  'مرحبا': '✋',
+  // كف مفتوح (مرحباً / Hello)
   'مرحباً': '✋',
   'أهلاً': '✋',
-  'توقف': '✊',
-  'ممتاز': '👍',
-  'احسنت': '👍',
-  'أبداً': '👎',
-  'ابدا': '👎',
-  'اثنان': '✌️',
-  'علامة النصر': '✌️',
-  'النصر': '✌️',
-  'واحد': '☝️',
+  'مرحبا': '✋',
   'hello': '✋',
+  'open palm': '✋',
+
+  // قبضه مغلقة (توقف / Stop)
+  'توقف': '✊',
+  'قف': '✊',
   'stop': '✊',
+  'closed fist': '✊',
+
+  // إبهام لأعلى (ممتاز / Excellent)
+  'ممتاز': '👍',
+  'أحسنت': '👍',
+  'عظيم': '👍',
   'excellent': '👍',
+  'thumbs up': '👍',
+
+  // إبهام لأسفل (أبداً / Never)
+  'أبداً': '👎',
+  'مستحيل': '👎',
   'never': '👎',
+  'thumbs down': '👎',
+
+  // اثنان / Two (تم إزالة تكرارات النصر والاعتماد على اثنان/Two)
+  'اثنان': '✌️',
   'two': '✌️',
   '2': '✌️',
   'victory sign': '✌️',
+
+  // واحد / One
+  'واحد': '☝️',
   'one': '☝️',
-  '1': '☝️'
+  '1': '☝️',
+  'raised finger': '☝️'
 };
 
 function showView(viewToShow: HTMLElement) {
@@ -181,7 +198,6 @@ function recognizeGesture(landmarks: any[]): string {
     return currentLang === 'ar' ? 'مرحباً ✋' : 'Hello ✋';
   }
   
-  // الكاميرا ترجع "اثنان ✌️" بالوضع العربي و "Two ✌️" بالوضع الإنجليزي
   if (isIndexUp && isMiddleUp && !isRingUp && !isPinkyUp && landmarks[16].y > landmarks[14].y && landmarks[20].y > landmarks[18].y) {
     return currentLang === 'ar' ? 'اثنان ✌️' : 'Two ✌️';
   }
@@ -321,6 +337,7 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
   
   recognition.lang = currentLang === 'ar' ? 'ar-SA' : 'en-US';
   recognition.continuous = false;
+  recognition.interimResults = false;
 
   let isListening = false;
 
@@ -335,6 +352,7 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       recognition.start();
     } catch (e) {
       console.error(e);
+      alert(currentLang === 'ar' ? 'تعذر تشغيل الميكروفون.' : 'Could not start microphone.');
     }
   });
 
@@ -350,7 +368,8 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
     processTextToSign(transcript);
   };
 
-  recognition.onerror = () => {
+  recognition.onerror = (event: any) => {
+    console.error('Speech recognition error:', event.error);
     resetMicButton();
   };
 
@@ -365,7 +384,7 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
   }
 } else {
   micListenBtn.addEventListener('click', () => {
-    alert(currentLang === 'ar' ? 'متصفحك لا يدعم التعرف الصوتي.' : 'Your browser does not support speech recognition.');
+    alert(currentLang === 'ar' ? 'متصفحك الحالي لا يدعم التعرف الصوتي.' : 'Your browser does not support speech recognition.');
   });
 }
 
