@@ -393,19 +393,19 @@ body, html {
   cursor: pointer;
 }
 
-/* زرار الثيم */
+/* زرار الثيم (مضبوط بالكامل) */
 .theme-toggle-btn {
-  width: 60px;
-  height: 30px;
+  width: 54px;
+  height: 28px;
+  min-width: 54px;
   border-radius: 50px;
   border: 2px solid #cbd5e1;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: all 0.4s ease;
-  display: flex;
-  align-items: center;
-  padding: 2px;
+  display: inline-block;
+  padding: 0;
 }
 
 .theme-toggle-btn.light {
@@ -425,19 +425,19 @@ body, html {
 }
 
 .sun-circle {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   background-color: #fbc02d;
   border-radius: 50%;
   position: absolute;
   left: 2px;
-  top: 1px;
+  top: 2px;
   box-shadow: 0 0 6px #fbc02d;
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease, background-color 0.4s ease;
 }
 
 .theme-toggle-btn.dark .sun-circle {
-  transform: translateX(30px);
+  transform: translateX(26px);
   background-color: #d1d5db;
   box-shadow: inset -3px -2px 0 0 #9ca3af;
 }
@@ -446,10 +446,10 @@ body, html {
   position: absolute;
   background: #fff;
   border-radius: 10px;
-  right: 6px;
-  bottom: 4px;
-  width: 14px;
-  height: 6px;
+  right: 5px;
+  bottom: 3px;
+  width: 12px;
+  height: 5px;
   opacity: 0.8;
   transition: opacity 0.3s ease;
 }
@@ -461,19 +461,19 @@ body, html {
 .star {
   position: absolute;
   color: #fff;
-  font-size: 6px;
+  font-size: 5px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.star-1 { left: 8px; top: 5px; }
-.star-2 { left: 14px; top: 13px; }
+.star-1 { left: 6px; top: 4px; }
+.star-2 { left: 12px; top: 11px; }
 
 .theme-toggle-btn.dark .star {
   opacity: 1;
 }
 
 /* ========================================== */
-/* Media Queries للتجاوب الفعلي مع الموبايل */
+/* Media Queries للموبايل والتجاوب */
 /* ========================================== */
 @media (max-width: 900px) {
   .main-layout {
@@ -500,18 +500,39 @@ body, html {
   }
 
   .header {
-    padding: 10px 15px;
-    height: 65px;
+    padding: 10px 12px;
+    height: 60px;
     width: 100% !important;
+    gap: 5px;
   }
 
   .brand-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    gap: 6px;
+  }
+
+  .header > div:last-child {
+    gap: 6px;
   }
 
   .nav-btn {
-    padding: 6px 10px;
-    font-size: 0.8rem;
+    padding: 5px 8px;
+    font-size: 0.75rem;
+  }
+
+  .theme-toggle-btn {
+    width: 48px;
+    height: 26px;
+    min-width: 48px;
+  }
+
+  .sun-circle {
+    width: 18px;
+    height: 18px;
+  }
+
+  .theme-toggle-btn.dark .sun-circle {
+    transform: translateX(22px);
   }
 
   .content-area {
@@ -557,7 +578,6 @@ body.dark-mode .swapped-black {
   color: #ffffff !important;
 }
 
-/* جعل عنوان العلامة التجارية أبيض في الوضع الليلي */
 body.dark-mode .brand-title {
   color: #ffffff !important;
 }
