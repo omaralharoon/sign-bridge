@@ -393,7 +393,7 @@ body, html {
   cursor: pointer;
 }
 
-/* زرار الثيم (مضبوط بالكامل) */
+/* زرار الثيم */
 .theme-toggle-btn {
   width: 54px;
   height: 28px;
@@ -550,7 +550,7 @@ body, html {
   }
 }
 
-/* الوضع الليلي */
+/* الوضع الليلي وتعديل النصوص لتكون بيضاء وواضحة */
 body.dark-mode {
   background-color: #000000 !important;
   color: #ffffff !important;
@@ -591,6 +591,14 @@ body.dark-mode .nav-btn {
 body.dark-mode .hero-card {
   background-color: #000000 !important;
   border-color: #27272a !important;
+  color: #ffffff !important;
+}
+
+/* جعل عناوين النصوص بيضاء في الوضع الليلي */
+body.dark-mode .hero-card h2,
+body.dark-mode .hero-card p,
+body.dark-mode .interactive-card h2,
+body.dark-mode .interactive-card .box-desc {
   color: #ffffff !important;
 }
 

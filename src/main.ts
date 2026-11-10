@@ -122,6 +122,8 @@ const signDictionary: { [key: string]: string } = {
   'excellent': '👍',
   'thumbs up': '👍',
   'أبداً': '👎',
+  'ابدا': '👎',
+  'أبدا': '👎',
   'مستحيل': '👎',
   'never': '👎',
   'thumbs down': '👎',
