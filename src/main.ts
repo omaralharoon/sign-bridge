@@ -210,7 +210,6 @@ startCameraBtn.addEventListener('click', async () => {
     }
     webcam.srcObject = null;
 
-    // مسح الرسم على الكانفاس فور إيقاف الكاميرا
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 
     startCameraBtn.classList.remove('active');
@@ -254,8 +253,8 @@ startCameraBtn.addEventListener('click', async () => {
 
       if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
         for (const landmarks of results.multiHandLandmarks) {
-          drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, { color: '#009a96', lineWidth: 4 });
-          drawLandmarks(canvasCtx, landmarks, { color: '#0f172a', lineWidth: 2, radius: 6 });
+          drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, { color: '#009a96', lineWidth: 5 });
+          drawLandmarks(canvasCtx, landmarks, { color: '#0f172a', lineWidth: 2, radius: 7 });
         }
 
         const detectedSign = recognizeGesture(results.multiHandLandmarks[0]);
